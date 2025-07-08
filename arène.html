@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arène des Légendes - Jeu</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="css/arène.css">
+</head>
+
+<body>
+
+    <audio id="musique_principale" src="https://archive.org/download/gameaudio/backgroundMusic.mp3"
+        preload="auto"></audio>
+
+    <nav class="navbar">
+        <div class="navbar-logo">
+            <div class="logo-icon"></div>
+        </div>
+        <div class="navbar-actions">
+            <button class="navbar-button settings-button">
+                <a href="index.html"><i class="fas fa-home" style="color: white;"></i></a>
+
+            </button>
+            <button class="navbar-button help-button">
+                <a href="pièges-récompenses.html"><i class="fas fa-question-circle" style="color: white;"></i></a>
+
+            </button>
+
+        </div>
+    </nav>
+
+
+    <div class="game-container">
+        <!-- Logo du jeu -->
+        <!-- <div class="game-logo">
+            <div class="logo-container">
+                <div class="logo">
+                    <div class="logo-shine"></div>
+                </div>
+            </div>
+        </div> -->
+
+        <!-- Header Bar -->
+        <!-- <div class="header-bar">
+            <div class="logo-container">
+                <div class="logo">
+                    <div class="logo-shine"></div>
+                </div>
+            </div>
+
+
+        </div> -->
+
+        <div id="gameStatus" class="gameStatus"></div>
+
+        <div class="game-area">
+            <div class="player-panel">
+                <!-- <div class="panel-title">Joueurs</div> -->
+                <div id="playerCardsContainer"></div>
+            </div>
+            <div id="diceRollScreen" style="display:none;">
+                <h2>Détermination du premier joueur</h2>
+                <!-- <p class="dice-instruction">Chaque joueur va lancer un dé. Celui qui obtient le score le plus élevé commence.</p> -->
+
+                <div class="dice-container-second-de">
+                    <div class="dice-3d">
+                        <div class="face front"></div>
+                        <div class="face back"></div>
+                        <div class="face right"></div>
+                        <div class="face left"></div>
+                        <div class="face top"></div>
+                        <div class="face bottom"></div>
+                    </div>
+                </div>
+
+
+                <div id="diceRollResults">
+                </div>
+
+                <button id="rollDiceBtn">
+                    <span>Lancer le dé</span>
+                </button>
+
+                <button id="startWithDiceBtn" style="display:none;">
+                    <span>Commencer</span>
+                </button>
+            </div>
+
+
+            <div class="game-board-container">
+                <div class="game-board" id="gameBoard"></div>
+            </div>
+            <div id="actionHistoryContainer">
+                <div class="history-header">
+                    <h3>Historique</h3>
+                    <button id="clearHistoryBtn" class="history-btn">Effacer</button>
+                </div>
+                <div id="actionHistory"></div>
+            </div>
+            <button id="toggleHistoryBtn" class="history-toggle-btn">
+                <i class="fas fa-history"></i>
+            </button>
+
+            <div id="actionHistoryContainer" class="history-hidden">
+                <div class="history-header">
+                    <h3>Historique</h3>
+                    <button id="clearHistoryBtn" class="history-btn">
+                        <i class="fas fa-trash-alt"></i>
+                    </button>
+                </div>
+                <div id="actionHistory"></div>
+            </div>
+            <div class="action-wheel">
+                <!-- <div class="action-center">Action</div> -->
+                <div class="action-button action-move" id="moveBtn">
+                    <i class="icon fas fa-running" style="font-size: 25px;"></i>
+                    <!-- <span>SE DÉPLACER</span> -->
+                </div>
+                <div class="action-button action-attack" id="attackBtn">
+                    <i class="icon fas fa-fist-raised" style="font-size: 25px;"></i>
+                    <!-- <span>ATTAQUER</span> -->
+                </div>
+                <div class="action-button action-defend" id="defendBtn">
+                    <i class="icon fas fa-shield-alt" style="font-size: 25px;"></i>
+                    <!-- <span>DÉFENDRE</span> -->
+                </div>
+                <div class="action-button action-dodge" id="dodgeBtn">
+                    <i class="icon fas fa-wind" style="font-size: 25px;"></i>
+                    <!-- <span>ESQUIVER</span> -->
+                </div>
+                <div class="action-button action-special" id="specialBtn">
+                    <i class="icon fas fa-bolt" style="font-size: 25px;"></i>
+                    <!-- <span>SPÉCIAL</span> -->
+                </div>
+
+            </div>
+
+
+            <!-- <div class="control-panel">
+            <div class="actions">
+                <div class="section-title">Actions</div>
+                <div class="action-buttons">
+                    <div class="action-button" id="moveBtn">Se déplacer</div>
+                    <div class="action-button" id="attackBtn">Attaquer</div>
+                    <div class="action-button" id="defendBtn">Se défendre</div>
+                    <div class="action-button" id="dodgeBtn">Esquiver</div>
+                    <div class="action-button special-power" id="specialBtn">
+                        Pouvoir
+                        spécial</div>
+                </div>
+            </div>
+        </div> -->
+            <!-- Dice Animation Container -->
+            <div class="dice-container" id="diceContainer">
+                <div class="dice" id="dice">
+                    <div class="pip pip1"></div>
+                    <div class="pip pip2"></div>
+                    <div class="pip pip3"></div>
+                    <div class="pip pip4"></div>
+                    <div class="pip pip5"></div>
+                    <div class="pip pip6"></div>
+                    <div class="pip pip7"></div>
+                </div>
+                <!-- <div class="dice-message" id="diceMessage">Coup critique !</div> -->
+            </div>
+
+            <div class="setup-screen" id="setupScreen">
+                <div class="setup-content">
+                    <div class="setup-title">Configuration de la partie</div>
+                    <div class="players-selection">
+                        <div class="players-options">
+                            <div class="player-option selected" onclick="selectPlayerCount(2)">2 Joueurs</div>
+                            <div class="player-option" onclick="selectPlayerCount(3)">3 Joueurs</div>
+                            <div class="player-option" onclick="selectPlayerCount(4)">4 Joueurs</div>
+                        </div>
+                    </div>
+                    <div class="player-setups" id="playerSetups">
+                        <div class="player-setup">
+                            <div class="player-header">
+                                <div class="player-color-setup" style="background-color: #21f36e;"></div>
+                                <div class="player-title">Joueur 1</div>
+                            </div>
+                            <div class="hero-selection">
+                                <div class="hero-option-container">
+                                    <div class="hero-option option-chevalier" data-hero="chevalier"
+                                        style="background-image: url('./assets/images/Chevalier.jpg');">
+                                    </div>
+                                    <!-- <div class="hero-name">Chevalier</div> -->
+                                </div>
+                                <div class="hero-option-container">
+                                    <div class="hero-option option-ninja" data-hero="assassin"
+                                        style="background-image: url('./assets/images/Assasin.jpg');">
+                                    </div>
+                                    <!-- <div class="hero-name">Assasin</div> -->
+                                </div>
+                                <div class="hero-option-container">
+                                    <div class="hero-option option-sorcier" data-hero="moine"
+                                        style="background-image: url('./assets/images/Moine.avif');">
+                                    </div>
+                                    <!-- <div class="hero-name">Moine</div> -->
+                                </div>
+                                <div class="hero-option-container">
+                                    <div class="hero-option option-chevalier" data-hero="bete"
+                                        style="background-image: url('./assets/images/Bête\ mythique.avif');">
+                                    </div>
+                                    <!-- <div class="hero-name">Bête mythique</div> -->
+                                </div>
+                                <div class="hero-option-container">
+                                    <div class="hero-option option-ninja" data-hero="sorcier"
+                                        style="background-image: url('./assets/images/Sorcier.jpg');">
+                                    </div>
+                                    <!-- <div class="hero-name">Sorcière</div> -->
+                                </div>
+                                <div class="hero-option-container">
+                                    <div class="hero-option option-sorcier" data-hero="ninja"
+                                        style="background-image: url('./assets/images/Ninja.avif');">
+                                    </div>
+                                    <!-- <div class="hero-name">Ninja</div> -->
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="player-setup">
+                            <div class="player-header">
+                                <div class="player-color-setup" style="background-color: #e22a1c;"></div>
+                                <div class="player-title">Joueur 2</div>
+                            </div>
+                            <div class="hero-selection">
+                                <div class="hero-option-container">
+                                    <div class="hero-option option-chevalier" data-hero="chevalier"
+                                        style="background-image: url('./assets/images/Chevalier.jpg');">
+                                    </div>
+                                    <!-- <div class="hero-name">Chevalier</div> -->
+                                </div>
+                                <div class="hero-option-container">
+                                    <div class="hero-option option-ninja" data-hero="assassin"
+                                        style="background-image: url('./assets/images/Assasin.jpg');">
+                                    </div>
+                                    <!-- <div class="hero-name">Assasin</div> -->
+                                </div>
+                                <div class="hero-option-container">
+                                    <div class="hero-option option-sorcier" data-hero="moine"
+                                        style="background-image: url('./assets/images/Moine.avif');">
+                                    </div>
+                                    <!-- <div class="hero-name">Moine</div> -->
+                                </div>
+                                <div class="hero-option-container">
+                                    <div class="hero-option option-chevalier" data-hero="bete"
+                                        style="background-image: url('./assets/images/Bête\ mythique.avif');">
+                                    </div>
+                                    <!-- <div class="hero-name">Bête mythique</div> -->
+                                </div>
+                                <div class="hero-option-container">
+                                    <div class="hero-option option-ninja" data-hero="sorcier"
+                                        style="background-image: url('./assets/images/Sorcier.jpg');">
+                                    </div>
+                                    <!-- <div class="hero-name">Sorcière</div> -->
+                                </div>
+                                <div class="hero-option-container">
+                                    <div class="hero-option option-sorcier" data-hero="ninja"
+                                        style="background-image: url('./assets/images/Ninja.avif');">
+                                    </div>
+                                    <!-- <div class="hero-name">Ninja</div> -->
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="player-setup" style="display:none;" id="player3Setup">
+                            <div class="player-header">
+                                <div class="player-color-setup" style="background-color: #dece21;"></div>
+                                <div class="player-title">Joueur 3</div>
+                            </div>
+                            <div class="hero-selection">
+                                <div class="hero-option-container">
+                                    <div class="hero-option option-chevalier" data-hero="chevalier"
+                                        style="background-image: url('./assets/images/Chevalier.jpg');">
+                                    </div>
+                                    <!-- <div class="hero-name">Chevalier</div> -->
+                                </div>
+                                <div class="hero-option-container">
+                                    <div class="hero-option option-ninja" data-hero="assassin"
+                                        style="background-image: url('./assets/images/Assasin.jpg');">
+                                    </div>
+                                    <!-- <div class="hero-name">Assasin</div> -->
+                                </div>
+                                <div class="hero-option-container">
+                                    <div class="hero-option option-sorcier" data-hero="moine"
+                                        style="background-image: url('./assets/images/Moine.avif');">
+                                    </div>
+                                    <!-- <div class="hero-name">Moine</div> -->
+                                </div>
+                                <div class="hero-option-container">
+                                    <div class="hero-option option-chevalier" data-hero="bete"
+                                        style="background-image: url('./assets/images/Bête\ mythique.avif');">
+                                    </div>
+                                    <!-- <div class="hero-name">Bête mythique</div> -->
+                                </div>
+                                <div class="hero-option-container">
+                                    <div class="hero-option option-ninja" data-hero="sorcier"
+                                        style="background-image: url('./assets/images/Sorcier.jpg');">
+                                    </div>
+                                    <!-- <div class="hero-name">Sorcière</div> -->
+                                </div>
+                                <div class="hero-option-container">
+                                    <div class="hero-option option-sorcier" data-hero="ninja"
+                                        style="background-image: url('./assets/images/Ninja.avif');">
+                                    </div>
+                                    <!-- <div class="hero-name">Ninja</div> -->
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="player-setup" style="display:none;" id="player4Setup">
+                            <div class="player-header">
+                                <div class="player-color-setup" style="background-color: #3055cd;"></div>
+                                <div class="player-title">Joueur 4</div>
+                            </div>
+                            <div class="hero-selection">
+                                <div class="hero-option-container">
+                                    <div class="hero-option option-chevalier" data-hero="chevalier"
+                                        style="background-image: url('./assets/images/Chevalier.jpg');">
+                                    </div>
+                                    <!-- <div class="hero-name">Chevalier</div> -->
+                                </div>
+                                <div class="hero-option-container">
+                                    <div class="hero-option option-ninja" data-hero="assassin"
+                                        style="background-image: url('./assets/images/Assasin.jpg');">
+                                    </div>
+                                    <!-- <div class="hero-name">Assasin</div> -->
+                                </div>
+                                <div class="hero-option-container">
+                                    <div class="hero-option option-sorcier" data-hero="moine"
+                                        style="background-image: url('./assets/images/Moine.avif');">
+                                    </div>
+                                    <!-- <div class="hero-name">Moine</div> -->
+                                </div>
+                                <div class="hero-option-container">
+                                    <div class="hero-option option-chevalier" data-hero="bete"
+                                        style="background-image: url('./assets/images/Bête\ mythique.avif');">
+                                    </div>
+                                    <!-- <div class="hero-name">Bête mythique</div> -->
+                                </div>
+                                <div class="hero-option-container">
+                                    <div class="hero-option option-ninja" data-hero="sorcier"
+                                        style="background-image: url('./assets/images/Sorcier.jpg');">
+                                    </div>
+                                    <!-- <div class="hero-name">Sorcière</div> -->
+                                </div>
+                                <div class="hero-option-container">
+                                    <div class="hero-option option-sorcier" data-hero="ninja"
+                                        style="background-image: url('./assets/images/Ninja.avif');">
+                                    </div>
+                                    <!-- <div class="hero-name">Ninja</div> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button class="start-game-btn" id="startGameBtn" onclick="startGame()">Commencer la partie</button>
+                </div>
+            </div>
+            <div class="fullscreen-btn" onclick="goFullScreen()">
+                <i class="fas fa-expand"></i>
+            </div>
+        </div>
+
+        <div class="modal" id="gameOverModal">
+            <div class="modal-content">
+                <div class="winner-title">Victoire du Joueur <span id="winnerPlayer">1</span> !</div>
+                <div class="winner-hero" id="winnerHero"></div>
+                <div id="winnerMessage">Le chevalier a triomphé dans l'arène !</div>
+                <button class="restart-button" onclick="restartGame()">Rejouer</button>
+            </div>
+        </div>
+        <script src="js/arène.js"></script>
+</body>
+
+</html>

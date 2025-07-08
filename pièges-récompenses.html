@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arène des Légendes - Caractères du Jeu</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="css/pièges-récompenses.css">
+</head>
+
+<body>
+    <audio id="musique_principale" src="assets/audio/musique_principale.mp3" preload="auto"></audio>
+    <div class="game-container">
+        <div class="header-bar">
+            <div class="logo-container">
+                <div class="logo">
+                    <div class="logo-shine"></div>
+                </div>
+            </div>
+            <div class="navbar-actions">
+                <button class="navbar-button settings-button">
+                    <a href="index.html"><i class="fas fa-home" style="color: white;"></i></a>
+
+                </button>
+                <button class="navbar-button help-button">
+                    <i class="fas fa-question-circle"></i>
+                </button>
+
+            </div>
+        </div>
+        <div class="Legendary-banner">
+            <div class="Legendary-border"></div>
+            <div class="Legendary-text">Les Légendes de l'Arène</div>
+        </div>
+
+
+        <div class="bottom-nav">
+            <div class="nav-button">
+                <i class="fas fa-cog"></i>
+            </div>
+            <div class="nav-button" onclick="window.location.href='caracteres-jeu.html';">
+                <i class="fas fa-user"></i>
+            </div>
+            <div class="nav-button">
+                <i class="fas fa-question"></i>
+            </div>
+            <div class="nav-button" onclick="toggleSound()">
+                <i id="soundIcon" class="fas fa-volume-up"></i>
+            </div>
+        </div>
+
+        <div class="fullscreen-btn" onclick="goFullScreen()">
+            <i class="fas fa-expand"></i>
+        </div>
+
+        <div class="container">
+            <div class="header">
+                <h1 class="title">Pièges & Récompenses</h1>
+                <!-- <p class="subtitle">ITEM DESIGN</p> -->
+            </div>
+
+            <div class="size-section">
+                <!-- <div class="size-label">256*256 size</div> -->
+                <div class="items-grid grid-256">
+                    <div class="item-container" data-trap="poison">
+                        <div class="item-slot item-slot-large">
+                            <img src="assets/images/poisonTrap.png" alt="Piège empoisonné" class="item-image">
+                        </div>
+                        <div class="item-label">Piège empoisonné</div>
+                    </div>
+                    <div class="item-container" data-trap="ice">
+                        <div class="item-slot item-slot-large">
+                            <img src="assets/images/iceTrap.png" alt="Piège de glace" class="item-image">
+                        </div>
+                        <div class="item-label">Piège de glace</div>
+                    </div>
+                    <div class="item-container" data-trap="healing">
+                        <div class="item-slot item-slot-large">
+                            <img src="assets/images/healingTrap.png" alt="Fontaine curative" class="item-image">
+                        </div>
+                        <div class="item-label">Fontaine curative</div>
+                    </div>
+
+                    <div class="item-container" data-trap="fire">
+                        <div class="item-slot item-slot-large">
+                            <img src="assets/images/fire_trap.png" alt="Piège de feu" class="item-image">
+                        </div>
+                        <div class="item-label">Piège de feu</div>
+                    </div>
+
+                    <div class="item-container" data-trap="strength">
+                        <div class="item-slot item-slot-large">
+                            <img src="assets/images/strengthTrap.png" alt="Autel de force" class="item-image">
+                        </div>
+                        <div class="item-label">Autel de force</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="trap-preview-modal">
+
+        <!-- <div class="preview-header">
+            <div class="preview-title">Détails du Piège/Récompense</div>
+        </div> -->
+        <div class="preview-content">
+
+
+            <div class="preview-left">
+                <div class="close-preview"><i class="fas fa-times"></i></div>
+
+                <div class="trap-model">
+
+                    <div class="trap-image-container">
+
+                        <img src="" alt="Trap Image" class="trap-image-large">
+                    </div>
+                    <div class="trap-name-display"></div>
+
+                    <p class="trap-description"></p>
+                </div>
+            </div>
+         
+        </div>
+    </div>
+    <script src="js/index.js"></script>
+    <script src="js/pièges-récompenses.js"></script>
+</body>
+</html>

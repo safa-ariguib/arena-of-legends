@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arène des Légendes - Caractères du Jeu</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="css/caracteres-jeu.css">
+    <link rel="stylesheet" href="css/informations-caracteres.css">
+</head>
+
+<body>
+    <audio id="musique_principale" src="assets/audio/musique_principale.mp3" preload="auto"></audio>
+    <div class="game-container">
+        <div class="header-bar">
+            <div class="logo-container">
+                <div class="logo">
+                    <div class="logo-shine"></div>
+                </div>
+            </div>
+            <div class="navbar-actions">
+                <button class="navbar-button settings-button">
+                    <a href="index.html"><i class="fas fa-home" style="color: white;"></i></a>
+                </button>
+                <button class="navbar-button help-button">
+                    <i class="fas fa-question-circle"></i>
+                </button>
+            </div>
+        </div>
+        <div class="Legendary-banner">
+            <div class="Legendary-border"></div>
+            <div class="Legendary-text">Les Légendes de l'Arène</div>
+        </div>
+        <div class="reward-section">
+            <div class="reward-title">Récompense de victoire</div>
+            <div class="rewards-container">
+                <div class="reward-item shard-reward"></div>
+                <div class="reward-item silver-reward"></div>
+            </div>
+        </div>
+        <div class="champions-section">
+            <div class="champion-card" data-champion="chevalier">
+                <div class="champion-image" style="background-image: url('./assets/images/Chevalier.jpg');">
+                    <div class="champion-stars">
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                    </div>
+                </div>
+                <div class="champion-name">Chevalier</div>
+            </div>
+            <div class="champion-card" data-champion="assassin">
+                <div class="champion-image" style="background-image: url('./assets/images/Assasin.jpg');">
+                    <div class="champion-stars">
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                    </div>
+                </div>
+                <div class="champion-name">Assassin</div>
+            </div>
+            <div class="champion-card" data-champion="moine">
+                <div class="champion-image" style="background-image: url('./assets/images/Moine.avif');">
+                    <div class="champion-stars">
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                    </div>
+                </div>
+                <div class="champion-name">Moine</div>
+            </div>
+            <div class="champion-card" data-champion="bete">
+                <div class="champion-image" style="background-image: url('./assets/images/Bête\ mythique.avif');">
+                    <div class="champion-stars">
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                    </div>
+                </div>
+                <div class="champion-name">Bête mythique</div>
+            </div>
+            <div class="champion-card" data-champion="sorciere">
+                <div class="champion-image" style="background-image: url('./assets/images/Sorcier.jpg');">
+                    <div class="champion-stars">
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                    </div>
+                </div>
+                <div class="champion-name">Sorcière</div>
+            </div>
+            <div class="champion-card" data-champion="ninja">
+                <div class="champion-image" style="background-image: url('./assets/images/Ninja.avif');">
+                    <div class="champion-stars">
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                    </div>
+                </div>
+                <div class="champion-name">Ninja</div>
+            </div>
+        </div>
+        <div class="bottom-nav">
+            <div class="nav-buttons"></div>
+        </div>
+        <div class="nav-button" onclick="toggleSound()">
+            <i id="soundIcon" class="fas fa-volume-up"></i>
+        </div>
+        <div class="fullscreen-btn" onclick="goFullScreen()">
+            <i class="fas fa-expand"></i>
+        </div>
+    </div>
+    <div class="character-preview-modal">
+        <div class="preview-header">
+            <div class="preview-title">Prévisualisation du Personnage</div>
+            <div class="close-preview"><i class="fas fa-times"></i></div>
+        </div>
+        <div class="preview-content">
+            <div class="preview-left">
+                <div class="character-model">
+                    <div class="character-avatar">
+                        <img src="assets/images/Chevalier.jpg" alt="Character Avatar" class="avatar-image-large">
+                    </div>
+                    <div class="character-name-display">Chevalier</div>
+                    <p class="character-description"></p>
+
+                </div>
+            </div>
+            <div class="preview-right">
+                <div class="character-stats">
+                    <div class="stats-title">Caractéristiques</div>
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <div class="stat-icon"><i class="fas fa-heart"></i></div>
+                            <div class="stat-info">
+                                <div class="stat-name">Santé</div>
+                                <div class="stat-value" data-stat="health">100</div>
+                            </div>
+                            <div class="stat-bar">
+                                <div class="stat-fill" data-stat-bar="health" style="width: 100%;"></div>
+                            </div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-icon"><i class="fas fa-fist-raised"></i></div>
+                            <div class="stat-info">
+                                <div class="stat-name">Attaque</div>
+                                <div class="stat-value" data-stat="attack">8</div>
+                            </div>
+                            <div class="stat-bar">
+                                <div class="stat-fill" data-stat-bar="attack" style="width: 80%;"></div>
+                            </div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-icon"><i class="fas fa-shield-alt"></i></div>
+                            <div class="stat-info">
+                                <div class="stat-name">Défense</div>
+                                <div class="stat-value" data-stat="defense">7</div>
+                            </div>
+                            <div class="stat-bar">
+                                <div class="stat-fill" data-stat-bar="defense" style="width: 70%;"></div>
+                            </div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-icon"><i class="fas fa-running"></i></div>
+                            <div class="stat-info">
+                                <div class="stat-name">Vitesse</div>
+                                <div class="stat-value" data-stat="speed">4</div>
+                            </div>
+                            <div class="stat-bar">
+                                <div class="stat-fill" data-stat-bar="speed" style="width: 40%;"></div>
+                            </div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-icon"><i class="fas fa-bolt"></i></div>
+                            <div class="stat-info">
+                                <div class="stat-name">Pouvoir spécial</div>
+                                <div class="power-value" data-power="special">Frappe Héroïque</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/caracteres-jeu.js"></script>
+</body>
+
+</html>

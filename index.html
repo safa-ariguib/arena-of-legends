@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arène des Légendes - Accueil</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="css/index.css">
+</head>
+
+<body>
+    <audio id="musique_principale" src="assets/audio/musique_principale.mp3" preload="auto"></audio>
+    <div class="version-info">v1.0.3</div>
+    <!-- <div class="news-banner">
+        <i class="fas fa-newspaper"></i>
+        <span>Nouvelles Mises à Jour</span>
+    </div> -->
+    <div class="login-container">
+        <div class="game-logo">
+            <div class="logo-container">
+                <div class="logo">
+                    <div class="logo-shine"></div>
+                </div>
+                <h1>La légende commence</h1>
+            </div>
+        </div>
+        <div class="main-content">
+            <div class="decorative-border">
+                <div class="decorative-corner corner-1"></div>
+                <div class="decorative-corner corner-2"></div>
+                <div class="decorative-corner corner-3"></div>
+                <div class="decorative-corner corner-4"></div>
+            </div>
+            <div class="login-options">
+                <button class="login-button primary" onclick="window.location.href='arène.html';">
+                    <i class="fas fa-play"></i> Jouer
+                </button>
+                <button class="login-button">
+                    <i class="fas fa-sign-out-alt"></i> Quitter
+                </button>
+            </div>
+            <!-- <div class="play-guest">Jouer en invité</div> -->
+        </div>
+        <div class="bottom-nav">
+            <div class="nav-button">
+                <i class="fas fa-cog"></i>
+            </div>
+            <div class="nav-button" onclick="window.location.href='caracteres-jeu.html';">
+                <i class="fas fa-user"></i>
+            </div>
+            <div class="nav-button">
+                <i class="fas fa-question"></i>
+            </div>
+            <div class="nav-button" onclick="toggleSound()">
+                <i id="soundIcon" class="fas fa-volume-up"></i>
+            </div>
+        </div>
+        <div class="server-status">
+            <div class="status-indicator"></div>
+            En ligne
+        </div>
+        <div class="fullscreen-btn" onclick="goFullScreen()">
+            <i class="fas fa-expand"></i>
+        </div>
+    </div>
+    <script src="js/index.js"></script>
+</body>
+
+</html>
